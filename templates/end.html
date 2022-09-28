@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+        .center {
+            display: flex;
+            justify-content: center;
+        }
+        .b {
+                background-color: lightgrey;
+        }
+        .x .o {
+                background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+        <h1>tic-tac-too</h1>
+    </div>
+    <div class="center">
+        <table border="3px">
+            {% for i in range(9) %} 
+            {% set r = i//3 %} 
+            {% set c = i%3 %} 
+            {% set e = board[i] %} 
+            {% set spclass = ["o","b","x"][e+1] %} 
+            {% if c == 0 %}
+            <tr>
+            {% endif %}
+                <td class="{{spclass}}">
+                    {% if e == 0 %}
+                    <a href="set/{{i}}">
+                    {% endif %}
+                    <img src="/static/{{spclass}}.png" />
+                    {% if e == 0 %}
+                    </a>
+                    {% endif %}
+                </td>
+            {% if c == 2 %}
+            </tr>
+            {% endif %} 
+            {% endfor %}
+
+        </table>
+    </div>
+    <div class="center">
+        {% if t == 2 %} 
+        <h1>What a boring draw...</h1>
+        {% else %} 
+        {% set w = ['o', 'b', 'x'][t+1] %}
+        <h1>Congratulations <img src="/static/{{w}}.png"></h1>
+        {% endif %} 
+    </div>
+    <br><br>
+    <div class="center">
+        <a href="/new">Play again</a>
+
+    </div>
+</body>
+
+</html>
